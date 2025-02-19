@@ -19,16 +19,25 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("Dog Year Calculator")
+                .font(.system(size: 32, weight: .bold))
+                .padding(.bottom, 40)
             
             HStack {
                 avatarView(emoji: "👨‍💼", year: Int(humanYear))
+                Text("↔")
                 avatarView(emoji: "🐶", year: dogYear)
             }
             Slider(value: $humanYear, in: 0...16)
                 .padding(.horizontal, 40)
+                .padding(.vertical, 20)
 
         }
         .padding()
+        .onAppear() {
+            UISlider.appearance().minimumTrackTintColor = .gray
+            UISlider.appearance().maximumTrackTintColor = .gray
+            UISlider.appearance().thumbTintColor = .blue
+        }
     }
     
     func avatarView(emoji: String, year: Int) -> some View {
